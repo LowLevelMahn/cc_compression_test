@@ -15,6 +15,7 @@ by creating my own simple emulator to convert the asm semantics directly to C/C+
 # What is this repo?
 
 * Its a unit-test for the CC0/CC1 uncompression with compresse/uncompress-reference data of all games i could find that are using this compression algorithm
+* C++14, CMake - compiles/runs on Windows/Linux with clang,gcc,cl,CLion,QtCreator,MSVC,...
 * the `test_data.bin` file contains game data but is useless without knowing which part is from what game, unuseable for anything besides this test
 * the unit-test gets compressed and uncompressed reference data from the test_data.bin file (given by commandline) and just uncompress and compare the result
 * the unit-test does not contain the file-handling stuff for real CC0/CC1 but only the uncompression-algorithm test
