@@ -4,24 +4,20 @@ While reverse engineering AlphaWaves/Continuum (https://www.mobygames.com/game/9
 I disassembled the algorithm and found other games of **Infogrames Europe SA** that uses the same compression method.
 There is no real use for gamers but maybe that helps people like me have an easier start in reversing/modding some of these games
 
-i created a ModdingWiki-Page with some CC0/CC1 infos: https://moddingwiki.shikadi.net/wiki/Alpha_Waves, https://moddingwiki.shikadi.net/wiki/CC1_Format
-My testproject for reversing findings https://github.com/LowLevelMahn/alpha_waves_loader
-I ported the original 16bit DOS uncompression code (https://github.com/LowLevelMahn/alpha_waves_loader/blob/fc3269c686726227f3f5c7b044d4bc631ad2e87f/ae.asm#L970)
+* i created a ModdingWiki-Page with some CC0/CC1 infos: https://moddingwiki.shikadi.net/wiki/Alpha_Waves, https://moddingwiki.shikadi.net/wiki/CC1_Format
+* My testproject for reversing findings https://github.com/LowLevelMahn/alpha_waves_loader
+* ported the original 16bit DOS uncompression code (https://github.com/LowLevelMahn/alpha_waves_loader/blob/fc3269c686726227f3f5c7b044d4bc631ad2e87f/ae.asm#L970)
 by creating my own simple emulator to convert the asm semantics directly to C/C++: https://github.com/LowLevelMahn/alpha_waves_loader/blob/main/read_some_file_sub_4/original_port.cpp
-then i did a cleanup and created a command line tool for uncompressing these files: https://github.com/LowLevelMahn/alpha_waves_loader/tree/main/tools/uncompress_cc
-
-i tested uncompression by hooking it into Dosbox - overwriting the original code - doing regression tests and even run the game itself with my code
+* did a cleanup and created a command line tool for uncompressing these files: https://github.com/LowLevelMahn/alpha_waves_loader/tree/main/tools/uncompress_cc
+* tested uncompression by hooking it into Dosbox - overwriting the original code - doing regression tests and even run the game itself with my code
+* i tried to keep the algorithm as picky as possible to detected any fails or loss of data etc.
 
 # What is this repo?
 
-Its a unit-test for the CC0/CC1 uncompression 
-with compresse/uncompress-reference data of all games i could find that are using this compression algorithm
-(the file contains game data but is useless without knowing which part is from what game, unuseable for anything besides this test)
-
-the unit-test gets compressed and uncompressed reference data from the test_data.bin file (given by commandline) and just uncompress and compare the result
-i tried to keep the algorithm as picky as possible to detected any fails or loss of data etc.
-
-the unit-test does not contain the file-handling stuff for real CC0/CC1 but only the uncompression-algorithm test
+* Its a unit-test for the CC0/CC1 uncompression with compresse/uncompress-reference data of all games i could find that are using this compression algorithm
+* the `test_data.bin` file contains game data but is useless without knowing which part is from what game, unuseable for anything besides this test
+* the unit-test gets compressed and uncompressed reference data from the test_data.bin file (given by commandline) and just uncompress and compare the result
+* the unit-test does not contain the file-handling stuff for real CC0/CC1 but only the uncompression-algorithm test
 
 # Games with CC0 or CC1 packed files
 
