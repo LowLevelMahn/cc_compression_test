@@ -9,16 +9,20 @@ There is no real use for gamers but maybe that helps people like me have an easi
 * ported the original 16bit DOS uncompression code (https://github.com/LowLevelMahn/alpha_waves_loader/blob/fc3269c686726227f3f5c7b044d4bc631ad2e87f/ae.asm#L970)
 by creating my own simple emulator to convert the asm semantics directly to C/C++: https://github.com/LowLevelMahn/alpha_waves_loader/blob/main/read_some_file_sub_4/original_port.cpp
 * did a cleanup and created a command line tool for uncompressing these files: https://github.com/LowLevelMahn/alpha_waves_loader/tree/main/tools/uncompress_cc
-* tested uncompression by hooking it into Dosbox - overwriting the original code - doing regression tests and even run the game itself with my code
-* i tried to keep the algorithm as picky as possible to detected any fails or loss of data etc.
+
+# How did i validate the uncompression code
+
+* converted the orginal assembler code to semantical identical asm-like functions and then ported step by step - very slow :)
+* tested my uncompression by hooking into Dosbox - overwriting the original code - doing regression tests and even run the game itself with my code
+* i tried to keep the algorithm as picky as possible to detected any fails or loss of data etc. (any wrong change will normaly leads to endless-recursion or other fails very fast)
 
 # What is this repo?
 
-* Its a unit-test for the CC0/CC1 uncompression with compresse/uncompress-reference data of all games i could find that are using this compression algorithm
+* Its a unit-test to test my reversed algorithm to uncompression CC0/CC1 files
+* the unit-test gets compressed and uncompressed reference data from the included `test_data.bin` file (given by commandline) and just uncompress and compare the result
+* the `test_data.bin` file contains compressed game data but is useless without knowing which part is from what game, unuseable for anything beside this test
+* the unit-test does not contain the file-handling stuff for real CC0/CC1 files but only the uncompression-algorithm
 * C++14, CMake - compiles/runs on Windows/Linux with clang,gcc,cl,CLion,QtCreator,MSVC,...
-* the `test_data.bin` file contains game data but is useless without knowing which part is from what game, unuseable for anything besides this test
-* the unit-test gets compressed and uncompressed reference data from the test_data.bin file (given by commandline) and just uncompress and compare the result
-* the unit-test does not contain the file-handling stuff for real CC0/CC1 but only the uncompression-algorithm test
 
 # Games with CC0 or CC1 packed files
 
