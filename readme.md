@@ -12,7 +12,7 @@ by creating my own simple emulator to convert the asm semantics directly to C/C+
 
 # How did i validate the uncompression code
 
-* converted the orginal assembler code to semantical identical asm-like functions and then ported step by step - very slow :)
+* converted the orginal assembler code to semantical identical asm-like functions and then ported step by step - very slow and carefull :)
 * tested my uncompression by hooking into Dosbox - overwriting the original code - doing regression tests and even run the game itself with my code
 * i tried to keep the algorithm as picky as possible to detected any fails or loss of data etc. (any wrong change will normaly leads to endless-recursion or other fails very fast)
 
